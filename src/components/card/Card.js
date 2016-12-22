@@ -1,4 +1,4 @@
-import { mapState } from 'vuex';
+import { mapState, mapMutations} from 'vuex';
 import store from '../../store/store';
 
 /* eslint-env browser */
@@ -27,6 +27,7 @@ export default {
     ...mapState(['totalMatches']),
   },
   methods: {
+    ...mapMutations(['incrementTotalMatches']),
     getData() {
       return new Promise((resolve) => {
         const func = 'test';
@@ -55,7 +56,7 @@ export default {
         .then((result) => {
           if (result) {
             self.resultClass = 'green';
-            self.$store.state.totalMatches += 1;
+            self.incrementMatches();
           } else {
             self.resultClass = 'red';
           }
@@ -64,6 +65,9 @@ export default {
 
 
       this.translation = '';
+    },
+    incrementMatches() {
+      this.$store.commit('incrementTotalMatches');
     },
   },
 };
