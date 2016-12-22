@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 export const SET_MATCHES = 'app/set_total_matches';
 export const SET_CARDS = 'app/set_cards';
 export const LOAD_CARDS = 'app/load_cards';
+export const GET_CARDS_LENGTH = 'app/get_cards_length';
 
 /* eslint no-param-reassign: 0 */
 /* eslint-env browser */
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
   state: {
     cards: [],
     totalMatches: 0,
+  },
+  getters: {
+    [GET_CARDS_LENGTH]: state => (state.cards.length),
   },
   mutations: {
     [SET_MATCHES]: state => (state.totalMatches += 1),
