@@ -3,6 +3,7 @@ import Card from './components/card/Card.vue';
 import store, { LOAD_CARDS, GET_CARDS_LENGTH } from './store/store';
 
 const { load } = mapActions({ load: LOAD_CARDS });
+const { cardsLength } = mapGetters({ cardsLength: [GET_CARDS_LENGTH] });
 
 /* eslint-env browser */
 /* eslint-disable no-console */
@@ -22,9 +23,7 @@ export default {
   },
   computed: {
     ...mapState(['cards', 'totalMatches']),
-    ...mapGetters({
-      cardsLength: [GET_CARDS_LENGTH],
-    }),
+    cardsLength,
   },
   mounted() {
     load.call(this);
