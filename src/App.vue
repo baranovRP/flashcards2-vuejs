@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="carousel">
-      <button class="arrow" @click="prev" v-bind:disabled="isPrevDisable"> &lt; </button>
+      <button class="arrow" @click="prev" v-bind:disabled="isPrevDisable" title="Previous"> &lt; </button>
       <div class="container">
         <section class="cards">
           <card v-for="(card, idx) in cards"
@@ -11,7 +11,7 @@
                 v-bind:key="card.id"></card>
         </section>
       </div>
-      <button class="arrow" @click="next" v-bind:disabled="isNextDisable"> &gt; </button>
+      <button class="arrow" @click="next" v-bind:disabled="isNextDisable" title="Next"> &gt; </button>
     </div>
   </div>
 </template>
