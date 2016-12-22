@@ -1,6 +1,8 @@
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Card from './components/card/Card.vue';
-import store from './store/store';
+import store, { LOAD_CARDS } from './store/store';
+
+const { load } = mapActions({ load: LOAD_CARDS });
 
 /* eslint-env browser */
 /* eslint-disable no-console */
@@ -16,19 +18,13 @@ export default {
       currentIdx: 0,
       isPrevDisable: true,
       isNextDisable: false,
-      url: 'https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=idiom&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
     };
   },
   computed: {
-    ...mapState(['cards']),
+    ...mapState(['cards', 'totalMatches']),
   },
   mounted() {
-    const self = this;
-    fetch(this.url)
-      .then(r => r.json())
-      .then((data) => {
-        self.$store.state.cards = data;
-      });
+    load.call(this);
   },
   methods: {
     next() {
