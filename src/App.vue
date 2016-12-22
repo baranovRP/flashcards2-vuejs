@@ -13,6 +13,7 @@
       </div>
       <button class="arrow" @click="next" v-bind:disabled="isNextDisable" title="Next"> &gt; </button>
     </div>
+    <button @click="update" type="button" title="Update cards">Update</button>
   </div>
 </template>
 

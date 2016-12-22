@@ -47,5 +47,8 @@ export default {
       }
       this.isPrevDisable = true;
     },
+    update() {
+      load.call(this);
+    },
   },
 };
