@@ -13,13 +13,14 @@ export default {
   },
   data() {
     return {
+      currentIdx: 0,
       isPrevDisable: true,
       isNextDisable: false,
       url: 'https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=idiom&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
     };
   },
   computed: {
-    ...mapState(['cards', 'currentIdx', 'totalMatches']),
+    ...mapState(['cards']),
   },
   mounted() {
     const self = this;
@@ -31,21 +32,19 @@ export default {
   },
   methods: {
     next() {
-      if (this.$store.state.currentIdx < this.$store.state.cards.length - 1) {
+      if (this.currentIdx < this.$store.state.cards.length - 1) {
         this.isPrevDisable = false;
-        this.$store.state.currentIdx += 1;
-        if (this.$store.state.currentIdx === this.$store.state.cards.length - 1) {
-          this.isNextDisable = true;
-        }
+        this.currentIdx += 1;
+        if (this.currentIdx === this.$store.state.cards.length - 1) this.isNextDisable = true;
         return;
       }
       this.isNextDisable = true;
     },
     prev() {
-      if (this.$store.state.currentIdx > 0) {
+      if (this.currentIdx > 0) {
         this.isNextDisable = false;
-        this.$store.state.currentIdx -= 1;
-        if (this.$store.state.currentIdx === 0) this.isPrevDisable = true;
+        this.currentIdx -= 1;
+        if (this.currentIdx === 0) this.isPrevDisable = true;
         return;
       }
       this.isPrevDisable = true;
