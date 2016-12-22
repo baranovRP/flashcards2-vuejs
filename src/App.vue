@@ -1,28 +1,61 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <div class="carousel">
+      <button class="arrow" @click="prev" v-bind:disabled="isPrevDisable"> &lt; </button>
+      <div class="container">
+        <section class="cards">
+          <card v-for="(card, idx) in cards"
+                v-show="idx === currentIdx"
+                v-bind:original="card.word"
+                v-bind:idx="idx"
+                v-bind:key="card.id"></card>
+        </section>
+      </div>
+      <button class="arrow" @click="next" v-bind:disabled="isNextDisable"> &gt; </button>
+    </div>
   </div>
 </template>
 
-<script>
-import Hello from './components/Hello';
-
-export default {
-  name: 'app',
-  components: {
-    Hello,
-  },
-};
+<script src="./App.js">
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+
+.carousel {
+  width: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.container{
+  width: 200px;
+  padding: 0;
+  margin: auto;
+  overflow: hidden;
+}
+
+.cards{
+  display: flex;
+  padding: 0;
+}
+
+.arrow {
+  width: 35px;
+  height: 35px;
+  border: 1px solid grey;
+  border-radius: 20px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+.arrow:disabled{
+  background-color: lightgrey;
 }
 </style>
