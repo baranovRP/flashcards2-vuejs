@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+export const SET_MATCHES = 'app/set_total_matches';
+
 /* eslint no-param-reassign: 0 */
 
 Vue.use(Vuex);
@@ -12,7 +14,7 @@ const store = new Vuex.Store({
     totalMatches: 0,
   },
   mutations: {
-    incrementTotalMatches: state => (state.totalMatches += 1),
+    [SET_MATCHES]: state => (state.totalMatches += 1),
   },
 });
 

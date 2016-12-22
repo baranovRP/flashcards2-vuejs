@@ -1,5 +1,5 @@
-import { mapState, mapMutations} from 'vuex';
-import store from '../../store/store';
+import { mapState, mapMutations } from 'vuex';
+import store, { SET_MATCHES } from 'src/store/store';
 
 /* eslint-env browser */
 /* eslint-disable no-console */
@@ -27,7 +27,7 @@ export default {
     ...mapState(['totalMatches']),
   },
   methods: {
-    ...mapMutations(['incrementTotalMatches']),
+    ...mapMutations([SET_MATCHES]),
     getData() {
       return new Promise((resolve) => {
         const func = 'test';
@@ -67,7 +67,7 @@ export default {
       this.translation = '';
     },
     incrementMatches() {
-      this.$store.commit('incrementTotalMatches');
+      this.$store.commit([SET_MATCHES]);
     },
   },
 };
