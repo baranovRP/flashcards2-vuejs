@@ -1,3 +1,6 @@
+import { mapState } from 'vuex';
+import store from '../../store/store';
+
 /* eslint-env browser */
 /* eslint-disable no-console */
 
@@ -12,12 +15,16 @@ export default {
       default: 0,
     },
   },
+  store,
   data() {
     return {
       translation: '',
       answer: '',
       resultClass: '',
     };
+  },
+  computed: {
+    ...mapState(['totalMatches']),
   },
   methods: {
     getData() {
@@ -48,6 +55,7 @@ export default {
         .then((result) => {
           if (result) {
             self.resultClass = 'green';
+            self.$store.state.totalMatches += 1;
           } else {
             self.resultClass = 'red';
           }

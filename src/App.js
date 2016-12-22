@@ -19,7 +19,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['cards', 'currentIdx']),
+    ...mapState(['cards', 'currentIdx', 'totalMatches']),
   },
   mounted() {
     const self = this;
